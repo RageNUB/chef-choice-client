@@ -35,7 +35,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <a className="btn btn-ghost normal-case text-xl">Chef Choice</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -48,7 +48,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Get started</a>
+          <Link to="/login" className="btn btn-primary text-white">Login</Link>
         </div>
       </div>
     </div>
