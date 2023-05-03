@@ -1,82 +1,27 @@
-import React from "react";
-import "./Home.css";
+import React, { useEffect, useState } from "react";
+import Banner from "../../components/Banner/Banner";
+import Card from "../../components/Card/Card";
 
 const Home = () => {
+  const [chefData, setChefData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/chef-info")
+      .then((res) => res.json())
+      .then((data) => setChefData(data))
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <div>
-      <div className="carousel w-full">
-        <div id="slide1" className="carousel-item relative w-full">
-          <img
-            src="https://img.freepik.com/free-photo/italian-pasta-shells-with-mushrooms-zucchini-tomato-sauce_2829-10882.jpg?w=1380&t=st=1683103281~exp=1683103881~hmac=ebbf7ab515b366343177aeddf69c122a7dd66b78e6d64ff34490daa52e727d0a"
-            className="w-full"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide4" className="btn btn-circle">
-              ❮
-            </a>
-            <div>
-              <h1 className="text-5xl font-bold text-secondary">Welcome To</h1>
-              <h1 className="text-8xl font-bold text-primary">Chef Choice</h1>
+      <Banner></Banner>
+      <div className="mt-8">
+        <h1 className="text-center font-bold text-4xl">Chef Details</h1>
+            <div className="grid grid-cols-1 lg:grid-cols-3 px-20 gap-5 mt-10 mb-5">
+                {chefData.map((data) => (
+                    <Card key={data.id} data={data}></Card>
+                    ))}
             </div>
-            <a href="#slide2" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide2" className="carousel-item relative w-full">
-          <img
-            src="https://img.freepik.com/premium-photo/penne-pasta-tomato-sauce-with-meat-tomatoes-decorated-with-pea-sprouts-dark-table_2829-19421.jpg?w=1380"
-            className="w-full"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide1" className="btn btn-circle">
-              ❮
-            </a>
-            <div>
-              <h1 className="text-5xl font-bold text-secondary">Welcome To</h1>
-              <h1 className="text-8xl font-bold text-primary">Chef Choice</h1>
-            </div>
-            <a href="#slide3" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide3" className="carousel-item relative w-full">
-          <img
-            src="https://img.freepik.com/premium-photo/italian-pasta-spaghetti-with-meatballs-parmesan-cheese-black-plate-dark-rustic-wood-table-dinner-top-view-slow-food-concept_2829-12758.jpg"
-            className="w-full"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide2" className="btn btn-circle">
-              ❮
-            </a>
-            <div>
-              <h1 className="text-5xl font-bold text-secondary">Welcome To</h1>
-              <h1 className="text-8xl font-bold text-primary">Chef Choice</h1>
-            </div>
-            <a href="#slide4" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide4" className="carousel-item relative w-full">
-          <img
-            src="https://img.freepik.com/free-photo/tortilla-wrap-with-falafel-fresh-salad-vegan-tacos-vegetarian-healthy-food-banner-top-view_2829-14415.jpg"
-            className="w-full"
-          />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide3" className="btn btn-circle">
-              ❮
-            </a>
-            <div>
-              <h1 className="text-5xl font-bold text-secondary">Welcome To</h1>
-              <h1 className="text-8xl font-bold text-primary">Chef Choice</h1>
-            </div>
-            <a href="#slide1" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   );
