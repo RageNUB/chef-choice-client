@@ -5,9 +5,6 @@ import { useNavigation } from "react-router-dom";
 
 const Home = () => {
   const [chefData, setChefData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const navigation = useNavigation();
-  console.log(navigation)
 
   useEffect(() => {
     fetch("http://localhost:5000/chef-info")

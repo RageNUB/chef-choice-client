@@ -1,15 +1,20 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
-  const {googleSignIn, githubSignIn, signIn} = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const {googleSignIn, githubSignIn, signIn, setUser} = useContext(AuthContext);
+  const navigate = useNavigate()
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = () => {
     googleSignIn()
     .then(result => {
       console.log(result)
+      navigate(from)
     })
     .catch(error => {
       console.log(error)
@@ -20,6 +25,7 @@ const Login = () => {
     githubSignIn()
     .then(result => {
       console.log(result)
+      navigate(from)
     })
     .catch(error => {
       console.log(error)
@@ -35,9 +41,12 @@ const Login = () => {
     signIn(email, password)
     .then(result => {
       console.log(result)
+      navigate(from);
+      setError("");
     })
     .catch(error => {
-      console.log(error)
+      console.log("showing error", error)
+      setError("Email or Password doesn't match. Please try agian...")
     })
 }
 
@@ -62,6 +71,7 @@ const Login = () => {
                   type="email"
                   placeholder="email"
                   name="email"
+                  required
                   className="input input-bordered"
                 />
               </div>
@@ -73,6 +83,7 @@ const Login = () => {
                   type="password"
                   placeholder="password"
                   name="password"
+                  required
                   className="input input-bordered"
                 />
                 <label className="label">
@@ -80,6 +91,7 @@ const Login = () => {
                     Forgot password?
                   </a>
                 </label>
+                <p className="text-error"><small>{error}</small></p>
               </div>
               <div className="form-control mt-4">
                 <button className="btn btn-primary">Login</button>

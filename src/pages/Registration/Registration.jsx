@@ -1,68 +1,77 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Registration = () => {
-    const [checked, setChecked] = useState(false);
-    const {googleSignIn, githubSignIn, logOut, createUser} = useContext(AuthContext);
+  const [checked, setChecked] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { googleSignIn, githubSignIn, logOut, createUser } =
+    useContext(AuthContext);
 
-    const handleGoogleSignIn = () => {
-      googleSignIn()
-      .then(result => {
-        console.log(result)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    }
+  // const handleGoogleSignIn = () => {
+  //   googleSignIn()
+  //   .then(result => {
+  //     console.log(result)
+  //   })
+  //   .catch(error => {
+  //     console.log(error)
+  //   })
+  // }
 
-    const handleGithubSignIn = () => {
-      githubSignIn()
-      .then(result => {
-        console.log(result)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    }
+  // const handleGithubSignIn = () => {
+  //   githubSignIn()
+  //   .then(result => {
+  //     console.log(result)
+  //   })
+  //   .catch(error => {
+  //     console.log(error)
+  //   })
+  // }
 
-    const handleChecked = event => {
-        setChecked(event.target.checked)
-    }
+  const handleChecked = (event) => {
+    setChecked(event.target.checked);
+  };
 
-    const handleRegister = event => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const photo = form.photo.value;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(name, photo, email, password)
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, photo, email, password);
 
-        createUser(email, password)
-        .then(result => {
-          console.log(result)
+    if (password.length < 6) {
+      return setError("Password must be 6 or more character long");
+    } else {
+      setError("")
+      createUser(email, password)
+        .then((result) => {
+          console.log(result);
         })
-        .catch(error => {
-          console.log(error)
-        })
+        .catch((error) => {
+          console.log(error);
+        });
+      navigate("/")
     }
+  };
 
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Please Register!</h1>
-            <div className="mt-4 shadow-2xl bg-base-100 p-4 rounded-lg text-center">
+            {/* <div className="mt-4 shadow-2xl bg-base-100 p-4 rounded-lg text-center">
               <button onClick={handleGoogleSignIn} className="btn btn-wide btn-outline text-primary hover:bg-primary hover:border-none mb-2">
                 <FaGoogle className="mr-2"></FaGoogle> Register with Google
               </button>
               <button onClick={handleGithubSignIn} className="btn btn-wide btn-outline text-accent hover:bg-accent hover:border-none">
                 <FaGithub className="mr-2"></FaGithub> Register with Github
               </button>
-            </div>
+            </div> */}
           </div>
           <div className="card w-full shadow-2xl bg-base-100">
             <form className="card-body" onSubmit={handleRegister}>
@@ -113,19 +122,25 @@ const Registration = () => {
                   required
                   className="input input-bordered"
                 />
+                <p className="text-error"><small>{error}</small></p>
               </div>
               <div className="form-control">
                 <label className="label cursor-pointer">
-                  <input onClick={handleChecked}
+                  <input
+                    onClick={handleChecked}
                     type="checkbox"
                     name="accept"
                     className="checkbox checkbox-primary"
                   />
-                  <span className="label-text">Accept Terms and Conditions</span>
+                  <span className="label-text">
+                    Accept Terms and Conditions
+                  </span>
                 </label>
               </div>
               <div className="form-control mt-4">
-                <button disabled={!checked} className="btn btn-primary">Register</button>
+                <button disabled={!checked} className="btn btn-primary">
+                  Register
+                </button>
               </div>
               <p>
                 <small>
@@ -134,9 +149,6 @@ const Registration = () => {
                     Please login
                   </Link>
                 </small>
-              </p>
-              <p onClick={logOut}>
-                Logout
               </p>
             </form>
           </div>

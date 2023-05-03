@@ -3,7 +3,13 @@ import { Link, NavLink, useNavigate, useNavigation } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
-  const {user} = useContext(AuthContext);
+  const {user, logOut} = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+    .then(result => console.log(result))
+    .catch(error => console.log(error))
+  }
 
   return (
     <div>
@@ -51,7 +57,14 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {user ? user.displayName : <Link to="/login" className="btn btn-primary text-white">Login</Link>}
+          <div>
+            {user && <div className="w-10 mr-3">
+          <img className="rounded-full" src={user?.photoURL} />
+        </div>}
+          </div>
+          <div>
+            {user ? <button onClick={handleLogOut} className="btn btn-primary text-white">Logout</button> : <Link to="/login" className="btn btn-primary text-white">Login</Link>}
+          </div>
         </div>
       </div>
     </div>
