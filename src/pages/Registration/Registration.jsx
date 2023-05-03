@@ -1,9 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Registration = () => {
     const [checked, setChecked] = useState(false);
+    const {googleSignIn, githubSignIn, logOut, createUser} = useContext(AuthContext);
+
+    const handleGoogleSignIn = () => {
+      googleSignIn()
+      .then(result => {
+        console.log(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+
+    const handleGithubSignIn = () => {
+      githubSignIn()
+      .then(result => {
+        console.log(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
 
     const handleChecked = event => {
         setChecked(event.target.checked)
@@ -17,6 +39,14 @@ const Registration = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(name, photo, email, password)
+
+        createUser(email, password)
+        .then(result => {
+          console.log(result)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
 
   return (
@@ -26,10 +56,10 @@ const Registration = () => {
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Please Register!</h1>
             <div className="mt-4 shadow-2xl bg-base-100 p-4 rounded-lg text-center">
-              <button className="btn btn-wide btn-outline text-primary hover:bg-primary hover:border-none mb-2">
+              <button onClick={handleGoogleSignIn} className="btn btn-wide btn-outline text-primary hover:bg-primary hover:border-none mb-2">
                 <FaGoogle className="mr-2"></FaGoogle> Register with Google
               </button>
-              <button className="btn btn-wide btn-outline text-accent hover:bg-accent hover:border-none">
+              <button onClick={handleGithubSignIn} className="btn btn-wide btn-outline text-accent hover:bg-accent hover:border-none">
                 <FaGithub className="mr-2"></FaGithub> Register with Github
               </button>
             </div>
@@ -104,6 +134,9 @@ const Registration = () => {
                     Please login
                   </Link>
                 </small>
+              </p>
+              <p onClick={logOut}>
+                Logout
               </p>
             </form>
           </div>

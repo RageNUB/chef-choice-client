@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink, useNavigate, useNavigation } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
+  const {user} = useContext(AuthContext);
+
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -48,7 +51,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to="/login" className="btn btn-primary text-white">Login</Link>
+          {user ? user.displayName : <Link to="/login" className="btn btn-primary text-white">Login</Link>}
         </div>
       </div>
     </div>
