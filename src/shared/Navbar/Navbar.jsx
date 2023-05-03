@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate, useNavigation } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -35,15 +35,15 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">Chef Choice</a>
+          <a className="btn btn-ghost normal-case lg:text-3xl text-2xl font-bold">Chef Choice</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to="/">Home</Link>
+              <NavLink className={({isActive}) => isActive ? "active text-white" : ""} to="/">Home</NavLink>
             </li>
             <li>
-              <Link to="/blog">Blog</Link>
+              <NavLink className={({isActive}) => isActive ? "active text-white" : ""} to="/blog">Blog</NavLink>
             </li>
           </ul>
         </div>

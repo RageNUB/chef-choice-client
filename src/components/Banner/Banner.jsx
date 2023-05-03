@@ -14,8 +14,8 @@ const Banner = () => {
               ❮
             </a>
             <div>
-              <h1 className="text-5xl font-bold text-secondary">Welcome To</h1>
-              <h1 className="text-8xl font-bold text-primary">Chef Choice</h1>
+              <h1 className="lg:text-5xl text-2xl font-bold text-secondary">Welcome To</h1>
+              <h1 className="lg:text-8xl text-3xl font-bold text-primary">Chef Choice</h1>
             </div>
             <a href="#slide2" className="btn btn-circle">
               ❯
@@ -32,8 +32,8 @@ const Banner = () => {
               ❮
             </a>
             <div>
-              <h1 className="text-5xl font-bold text-secondary">Welcome To</h1>
-              <h1 className="text-8xl font-bold text-primary">Chef Choice</h1>
+              <h1 className="lg:text-5xl text-2xl font-bold text-secondary">Welcome To</h1>
+              <h1 className="lg:text-8xl text-3xl font-bold text-primary">Chef Choice</h1>
             </div>
             <a href="#slide3" className="btn btn-circle">
               ❯
@@ -50,8 +50,8 @@ const Banner = () => {
               ❮
             </a>
             <div>
-              <h1 className="text-5xl font-bold text-secondary">Welcome To</h1>
-              <h1 className="text-8xl font-bold text-primary">Chef Choice</h1>
+              <h1 className="lg:text-5xl text-2xl font-bold text-secondary">Welcome To</h1>
+              <h1 className="lg:text-8xl text-3xl font-bold text-primary">Chef Choice</h1>
             </div>
             <a href="#slide4" className="btn btn-circle">
               ❯
@@ -68,8 +68,8 @@ const Banner = () => {
               ❮
             </a>
             <div>
-              <h1 className="text-5xl font-bold text-secondary">Welcome To</h1>
-              <h1 className="text-8xl font-bold text-primary">Chef Choice</h1>
+              <h1 className="lg:text-5xl text-2xl font-bold text-secondary">Welcome To</h1>
+              <h1 className="lg:text-8xl text-3xl font-bold text-primary">Chef Choice</h1>
             </div>
             <a href="#slide1" className="btn btn-circle">
               ❯

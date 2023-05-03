@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import { ToastContainer, toast } from 'react-toastify';
 
 const RecipeCard = (props) => {
+  const [disable, setDisable] = useState(false)
   const { name, photo, ingredients, cooking_method, rating } = props.recipe;
+
+  const handleToast = () => {
+    toast.success('Added to Favorite', {
+      position: toast.POSITION.TOP_RIGHT
+  });
+  setDisable(true)
+  }
   return (
     <div>
       <div className="card w-fit bg-base-100 shadow-xl">
@@ -35,7 +44,7 @@ const RecipeCard = (props) => {
             <p className="font-semibold text-right">{rating}</p>
           </div>
           <div className="card-actions mt-3">
-            <button className="btn btn-primary w-full text-white">Add to Favorite</button>
+            <button onClick={handleToast} disabled={disable} className="btn btn-primary w-full text-white">Add to Favorite</button>
           </div>
         </div>
       </div>
