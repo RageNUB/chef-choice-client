@@ -5,7 +5,7 @@ const Card = (props) => {
     const {id,name,image_url, years_experience, likes_count, num_recipes} = props.data;
 
     return (
-        <div className='border rounded-lg'>
+        <div className='border rounded-lg w-fit'>
             <img className='w-64 h-64 rounded-full mx-auto' src={image_url} alt="" />
             <h3 className='text-primary text-2xl font-semibold text-center mt-3'>{name}</h3>
             <div className='flex mt-4 justify-around mb-3'>
