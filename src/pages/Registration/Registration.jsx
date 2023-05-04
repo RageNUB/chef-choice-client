@@ -7,7 +7,7 @@ const Registration = () => {
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { googleSignIn, githubSignIn, logOut, createUser } =
+  const { googleSignIn, githubSignIn, logOut, createUser, profileUpdate } =
     useContext(AuthContext);
 
   // const handleGoogleSignIn = () => {
@@ -50,6 +50,7 @@ const Registration = () => {
       createUser(email, password)
         .then((result) => {
           console.log(result);
+          handleProfileUpdate(name, photo);
         })
         .catch((error) => {
           console.log(error);
@@ -57,6 +58,15 @@ const Registration = () => {
       navigate("/")
     }
   };
+
+  const handleProfileUpdate = (name, photo) => {
+    profileUpdate(name, photo)
+          .then(result => {
+              console.log(result)
+          })
+          .catch(error => console.log(error))
+    
+  }
 
   return (
     <div>
