@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink, useNavigate, useNavigation } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
+  const [showName, setShowName] = useState(false);
   const {user, logOut} = useContext(AuthContext);
 
   const handleLogOut = () => {
@@ -10,6 +11,8 @@ const Navbar = () => {
     .then(result => console.log(result))
     .catch(error => console.log(error))
   }
+
+  // {showName ? <p className="font-semibold text-lg text-primary">{user?.displayName}</p> : <img className="rounded-full w-10" src={user?.photoURL} />}
 
   return (
     <div>
@@ -58,12 +61,16 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div>
-            {user && <div className="w-10 mr-3">
-          <img className="rounded-full" src={user?.photoURL} />
+            {user && <div onMouseEnter={() => setShowName(true)} onMouseLeave={() => setShowName(false)} className=" mr-3 dropdown dropdown-hover dropdown-bottom dropdown-end">
+              <img className="rounded-full w-10" tabIndex={0} src={user?.photoURL} />
+              <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                <li><p className="font-semibold text-lg text-primary">{user?.displayName}</p></li>
+                <li><button onClick={handleLogOut} className="btn btn-primary text-white">Logout</button></li>
+              </ul>
         </div>}
           </div>
           <div>
-            {user ? <button onClick={handleLogOut} className="btn btn-primary text-white">Logout</button> : <Link to="/login" className="btn btn-primary text-white">Login</Link>}
+            {user ? "" : <Link to="/login" className="btn btn-primary text-white">Login</Link>}
           </div>
         </div>
       </div>

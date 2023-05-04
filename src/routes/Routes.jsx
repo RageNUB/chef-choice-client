@@ -6,6 +6,7 @@ import Registration from "../pages/Registration/Registration";
 import ChefRecipes from "../pages/ChefRecipes/ChefRecipes";
 import Blog from "../pages/Blog/Blog";
 import PrivateRoute from "./PrivateRoute";
+import Error from "../layouts/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
@@ -27,11 +28,15 @@ const router = createBrowserRouter([
             {
                 path: "/chef-info/:id",
                 element: <PrivateRoute><ChefRecipes></ChefRecipes></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/chef-info/${params.id}`)
+                loader: ({params}) => fetch(`https://chef-choice-server.vercel.app/chef-info/${params.id}`)
             },
             {
                 path: "blog",
                 element: <Blog></Blog>
+            },
+            {
+                path: "*",
+                element: <Error></Error>
             }
         ]
     }

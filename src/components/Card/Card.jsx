@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyLoad from 'react-lazy-load';
 import { Link } from 'react-router-dom';
 
 const Card = (props) => {
@@ -7,7 +8,9 @@ const Card = (props) => {
     return (
         <div className='border rounded-lg'>
             <div className='pt-3'>
-                 <img className='w-40 h-40 lg:w-64 lg:h-64 rounded-full mx-auto' src={image_url} alt="" />
+                 <LazyLoad>
+                      <img className='w-40 h-40 lg:w-64 lg:h-64 rounded-full mx-auto' src={image_url} alt="" />
+                 </LazyLoad>
             </div>
             <h3 className='text-primary text-2xl font-semibold text-center mt-3'>{name}</h3>
             <div className='flex mt-4 justify-around mb-3'>

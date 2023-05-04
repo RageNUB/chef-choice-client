@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Banner from "../../components/Banner/Banner";
 import Card from "../../components/Card/Card";
-import { useNavigation } from "react-router-dom";
 
 const Home = () => {
   const [chefData, setChefData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/chef-info")
+    fetch("https://chef-choice-server.vercel.app/chef-info")
       .then((res) => res.json())
       .then((data) => setChefData(data))
       .catch((error) => console.log(error));
