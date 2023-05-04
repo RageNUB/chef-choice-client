@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Registration = () => {
@@ -9,26 +8,6 @@ const Registration = () => {
   const navigate = useNavigate();
   const { googleSignIn, githubSignIn, logOut, createUser, profileUpdate } =
     useContext(AuthContext);
-
-  // const handleGoogleSignIn = () => {
-  //   googleSignIn()
-  //   .then(result => {
-  //     console.log(result)
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
-  // }
-
-  // const handleGithubSignIn = () => {
-  //   githubSignIn()
-  //   .then(result => {
-  //     console.log(result)
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
-  // }
 
   const handleChecked = (event) => {
     setChecked(event.target.checked);
@@ -74,14 +53,6 @@ const Registration = () => {
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Please Register!</h1>
-            {/* <div className="mt-4 shadow-2xl bg-base-100 p-4 rounded-lg text-center">
-              <button onClick={handleGoogleSignIn} className="btn btn-wide btn-outline text-primary hover:bg-primary hover:border-none mb-2">
-                <FaGoogle className="mr-2"></FaGoogle> Register with Google
-              </button>
-              <button onClick={handleGithubSignIn} className="btn btn-wide btn-outline text-accent hover:bg-accent hover:border-none">
-                <FaGithub className="mr-2"></FaGithub> Register with Github
-              </button>
-            </div> */}
           </div>
           <div className="card w-full shadow-2xl bg-base-100">
             <form className="card-body" onSubmit={handleRegister}>

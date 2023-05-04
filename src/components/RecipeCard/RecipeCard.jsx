@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import LazyLoad from "react-lazy-load";
 
 const RecipeCard = (props) => {
@@ -23,7 +23,7 @@ const RecipeCard = (props) => {
           </LazyLoad>
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{name}</h2>
+          <h2 className="card-title text-2xl text-primary">{name}</h2>
           <div>
             <p className="text-lg font-semibold">Ingredients: </p>
             <ul>

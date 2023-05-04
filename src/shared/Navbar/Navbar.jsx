@@ -4,7 +4,6 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
-  const [showName, setShowName] = useState(false);
   const { user, logOut } = useContext(AuthContext);
 
   const handleLogOut = () => {
@@ -12,8 +11,6 @@ const Navbar = () => {
       .then((result) => console.log(result))
       .catch((error) => console.log(error));
   };
-
-  // {showName ? <p className="font-semibold text-lg text-primary">{user?.displayName}</p> : <img className="rounded-full w-10" src={user?.photoURL} />}
 
   return (
     <div>
@@ -80,15 +77,17 @@ const Navbar = () => {
           <div>
             {user && (
               <div
-                onMouseEnter={() => setShowName(true)}
-                onMouseLeave={() => setShowName(false)}
                 className=" mr-3 dropdown dropdown-hover dropdown-bottom dropdown-end"
               >
-                {user.photoURL ? <img
-                  className="rounded-full w-10"
-                  tabIndex={0}
-                  src={user?.photoURL}
-                /> : <FaUserCircle className="text-4xl"></FaUserCircle>}
+                {user.photoURL ? (
+                  <img
+                    className="rounded-full w-10"
+                    tabIndex={0}
+                    src={user?.photoURL}
+                  />
+                ) : (
+                  <FaUserCircle className="text-4xl"></FaUserCircle>
+                )}
                 <ul
                   tabIndex={0}
                   className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
