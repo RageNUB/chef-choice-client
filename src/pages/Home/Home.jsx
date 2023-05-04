@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Banner from "../../components/Banner/Banner";
 import Card from "../../components/Card/Card";
+import Reviews from "../../components/Reviews/Reviews";
+import Partners from "../../components/Partners/Partners";
 
 const Home = () => {
   const [chefData, setChefData] = useState([]);
@@ -25,6 +27,8 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <Partners></Partners>
+      <Reviews></Reviews>
     </div>
   );
 };
