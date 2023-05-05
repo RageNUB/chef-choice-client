@@ -9,7 +9,7 @@ const RecipeCard = (props) => {
   const { name, photo, ingredients, cooking_method, rating } = props.recipe;
 
   const handleToast = () => {
-    toast.success("Added to Favorite", {
+    toast.success(`${name} Added to Favorite`, {
       position: toast.POSITION.TOP_RIGHT,
     });
     setDisable(true);

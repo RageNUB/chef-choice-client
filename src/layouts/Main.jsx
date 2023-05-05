@@ -5,6 +5,7 @@ import Footer from '../shared/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../components/Loader/Loader';
+import Modal from '../components/Modal/Modal';
 
 const Main = () => {
     const navigation = useNavigation();
@@ -16,6 +17,7 @@ const Main = () => {
             }
             <Footer></Footer>
             <ToastContainer></ToastContainer>
+            <Modal></Modal>
         </div>
     );
 };

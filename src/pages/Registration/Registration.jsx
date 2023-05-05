@@ -6,8 +6,7 @@ const Registration = () => {
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { googleSignIn, githubSignIn, logOut, createUser, profileUpdate } =
-    useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
 
   const handleChecked = (event) => {
     setChecked(event.target.checked);
@@ -20,16 +19,18 @@ const Registration = () => {
     const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, photo, email, password);
+    const password2 = form.password2.value;
+    console.log(name, photo, email, password,password2 );
 
     if (password.length < 6) {
       return setError("Password must be 6 or more character long");
+    } else if(password !== password2){
+        return setError("Password didn't match")
     } else {
       setError("")
       createUser(email, password)
         .then((result) => {
           console.log(result);
-          handleProfileUpdate(name, photo);
         })
         .catch((error) => {
           console.log(error);
@@ -37,15 +38,6 @@ const Registration = () => {
       navigate("/")
     }
   };
-
-  const handleProfileUpdate = (name, photo) => {
-    profileUpdate(name, photo)
-          .then(result => {
-              console.log(result)
-          })
-          .catch(error => console.log(error))
-    
-  }
 
   return (
     <div>
@@ -64,7 +56,6 @@ const Registration = () => {
                   type="text"
                   placeholder="Name"
                   name="name"
-                  required
                   className="input input-bordered"
                 />
               </div>
@@ -76,7 +67,6 @@ const Registration = () => {
                   type="text"
                   placeholder="Photo URL"
                   name="photo"
-                  required
                   className="input input-bordered"
                 />
               </div>
@@ -86,7 +76,7 @@ const Registration = () => {
                 </label>
                 <input
                   type="email"
-                  placeholder="email"
+                  placeholder="Email"
                   name="email"
                   required
                   className="input input-bordered"
@@ -98,8 +88,20 @@ const Registration = () => {
                 </label>
                 <input
                   type="password"
-                  placeholder="password"
+                  placeholder="Password"
                   name="password"
+                  required
+                  className="input input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Confirm Password</span>
+                </label>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password2"
                   required
                   className="input input-bordered"
                 />

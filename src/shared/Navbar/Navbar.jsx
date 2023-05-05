@@ -94,7 +94,7 @@ const Navbar = () => {
                 >
                   <li>
                     <p className="font-semibold text-lg text-primary">
-                      {user?.displayName}
+                      {user.displayName ? user.displayName : "User"}
                     </p>
                   </li>
                   <li>

@@ -5,7 +5,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const {googleSignIn, githubSignIn, signIn, setUser} = useContext(AuthContext);
+  const {googleSignIn, githubSignIn, signIn} = useContext(AuthContext);
   const navigate = useNavigate()
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -87,9 +87,9 @@ const Login = () => {
                   className="input input-bordered"
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
+                  <label htmlFor="my-modal-3" className="label-text-alt link link-hover">
                     Forgot password?
-                  </a>
+                  </label>
                 </label>
                 <p className="text-error"><small>{error}</small></p>
               </div>

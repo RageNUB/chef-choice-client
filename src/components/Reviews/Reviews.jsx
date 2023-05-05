@@ -3,7 +3,7 @@ import React from 'react';
 const Reviews = () => {
     return (
         <div className='mx-10 mb-10 mt-10'>
-            <h1 className='text-4xl font-bold text-center mt-5 mb-10'>Reviews</h1>
+            <h1 className='text-4xl font-bold text-center mt-5 mb-10'>Customer Reviews</h1>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
                 <div className='text-center bg-info rounded-lg p-5'>
                     <img className='w-32 h-32 rounded-full mx-auto' src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=996&t=st=1683216933~exp=1683217533~hmac=60f0f3fa0cdfb741f81b3d057f492f7caa0c722b84aa8b3beef925379cccb108" alt="" />
